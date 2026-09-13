@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="날짜별 할 일을 기록하고 관리하는 2026년 달력" />
+    <meta name="theme-color" content="#79cfff" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='7' y='9' width='50' height='48' rx='10' fill='%2379cfff' stroke='%23101820' stroke-width='5'/%3E%3Cpath d='M7 24h50M20 5v11M44 5v11' fill='none' stroke='%23101820' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='23' cy='37' r='4' fill='%23101820'/%3E%3Ccircle cx='41' cy='37' r='4' fill='%23101820'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>2026 DOT CALENDAR</title>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <div>
+            <p class="eyebrow">MY DAILY ARCHIVE</p>
+            <h1>2026 DOT CALENDAR</h1>
+          </div>
+        </div>
+        <div class="year-badge" aria-label="현재 연도 2026년">YEAR <strong>2026</strong></div>
+      </header>
+
+      <main class="workspace">
+        <section class="calendar-card" aria-labelledby="month-title">
+          <div class="calendar-toolbar">
+            <div class="month-heading">
+              <span id="month-number" class="month-number">01</span>
+              <div>
+                <p class="section-label">MONTHLY PLAN</p>
+                <h2 id="month-title">1월</h2>
+              </div>
+            </div>
+            <div class="month-controls" aria-label="월 이동">
+              <button id="prev-month" class="icon-button" type="button" aria-label="이전 달">‹</button>
+              <button id="today-button" class="today-button" type="button">오늘</button>
+              <button id="next-month" class="icon-button" type="button" aria-label="다음 달">›</button>
+            </div>
+          </div>
+
+          <div class="weekday-row" aria-hidden="true">
+            <span class="sunday">SUN</span><span>MON</span><span>TUE</span><span>WED</span>
+            <span>THU</span><span>FRI</span><span class="saturday">SAT</span>
+          </div>
+          <div id="calendar-grid" class="calendar-grid" role="grid" aria-labelledby="month-title"></div>
+
+          <div class="calendar-footer">
+            <p><span class="legend-dot has-task"></span> 할 일 있음</p>
+            <p><span class="legend-dot done"></span> 모두 완료</p>
+            <p id="month-progress">이번 달 0개 완료</p>
+          </div>
+        </section>
+
+        <aside class="todo-card" aria-labelledby="todo-title">
+          <div class="todo-card-top">
+            <div>
+              <p class="section-label">DAILY TO DO</p>
+              <h2 id="todo-title">1월 1일 목요일</h2>
+            </div>
+            <span id="date-stamp" class="date-stamp" aria-hidden="true">01.01</span>
+          </div>
+
+          <form id="todo-form" class="todo-form">
+            <label for="todo-input" class="sr-only">할 일 입력</label>
+            <input id="todo-input" type="text" maxlength="80" autocomplete="off" placeholder="할 일을 입력하세요" required />
+            <button type="submit">추가</button>
+          </form>
+
+          <div id="todo-summary" class="todo-summary" aria-live="polite">아직 할 일이 없어요</div>
+          <ul id="todo-list" class="todo-list"></ul>
+
+          <div id="empty-state" class="empty-state">
+            <div class="empty-graphic" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <p>가볍게 하나부터 적어볼까요?</p>
+            <span>선택한 날짜의 할 일이 여기에 쌓여요.</span>
+          </div>
+
+          <button id="clear-completed" class="clear-button" type="button" hidden>완료한 항목 지우기</button>
+        </aside>
+      </main>
+
+      <footer class="page-footer">
+        <span>2026</span>
+        <p>하루씩, 내 속도로 채우는 기록</p>
+        <span>365 DAYS</span>
+      </footer>
+
+      <img
+        class="puppy-mascot"
+        src="white-puppy.png"
+        alt="하늘색 목걸이를 한 귀여운 하얀 강아지 캐릭터"
+        width="1254"
+        height="1254"
+      />
+    </div>
+
+    <template id="todo-template">
+      <li class="todo-item">
+        <label>
+          <input class="todo-check" type="checkbox" />
+          <span class="custom-check" aria-hidden="true"></span>
+          <span class="todo-text"></span>
+        </label>
+        <button class="delete-button" type="button" aria-label="할 일 삭제">삭제</button>
+      </li>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
